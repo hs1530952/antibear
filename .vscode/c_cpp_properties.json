@@ -1,11 +1,11 @@
 {
     "env": {
         "gnuArmIncludePath": [
-            "E:/software/arm gcc/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include",
-            "E:/software/arm gcc/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include-fixed"
+            "D:/software/arm gcc/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include",
+            "D:/software/arm gcc/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include-fixed"
         ],
         "gnuArmCompilerPath": [
-            "E:/software/arm gcc/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-gcc.exe"
+            "D:/software/arm gcc/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-gcc.exe"
         ]
     },
     "configurations": [
@@ -13,8 +13,8 @@
             "name": "GNU Arm",
             "intelliSenseMode": "gcc-arm",
             "includePath": [
-                "E:/software/arm gcc/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include",
-                "E:/software/arm gcc/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include-fixed",
+                "D:/software/arm gcc/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include",
+                "D:/software/arm gcc/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include-fixed",
                 "${workspaceFolder}",
                 "${workspaceFolder}/lib/main/CMSIS/Core/Include",
                 "${workspaceFolder}/lib/main/CMSIS/DSP/Include",

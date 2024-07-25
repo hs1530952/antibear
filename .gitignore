@@ -54,3 +54,9 @@ dkms.conf
 # User Part
 obj/
 !*math.lib
+
+# Keil Part
+mdk-arm/DebugConfig
+*.uvguix.*
+*.uvoptx
+*.scvd
