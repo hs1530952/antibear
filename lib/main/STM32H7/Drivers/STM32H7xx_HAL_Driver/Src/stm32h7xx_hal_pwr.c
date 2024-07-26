@@ -563,11 +563,12 @@ void HAL_PWR_DisableWakeUpPin (uint32_t WakeUpPinx)
   */
 void HAL_PWR_EnterSLEEPMode (uint32_t Regulator, uint8_t SLEEPEntry)
 {
-  UNUSED(Regulator);
-
   /* Check the parameters */
   assert_param (IS_PWR_REGULATOR (Regulator));
   assert_param (IS_PWR_SLEEP_ENTRY (SLEEPEntry));
+
+  /* Prevent unused argument(s) compilation warning */
+  UNUSED(Regulator);
 
   /* Clear SLEEPDEEP bit of Cortex System Control Register */
   CLEAR_BIT (SCB->SCR, SCB_SCR_SLEEPDEEP_Msk);
