@@ -340,7 +340,7 @@
               <MiscControls>-Wpedantic -Wdouble-promotion -Wold-style-definition -fdata-sections -fno-common -pipe -MP</MiscControls>
               <Define>DEBUG USE_HAL_DRIVER USE_FULL_LL_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\lib\main\CMSIS\Core\Include;..\lib\main\STM32H7\Drivers\CMSIS\Device\ST\STM32H7xx\Include;..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Inc;..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Inc\Legacy;..\src\main;..\src\main\startup</IncludePath>
+              <IncludePath>..\lib\main\CMSIS\Core\Include;..\lib\main\STM32H7\Drivers\CMSIS\Device\ST\STM32H7xx\Include;..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Inc;..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Inc\Legacy;..\src\keil;..\src\keil\startup;..\src\keil\drivers;..\src\keil\drivers\mcu</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -390,7 +390,7 @@
             <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\main.c</FilePath>
+              <FilePath>..\src\keil\main.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -400,12 +400,12 @@
             <File>
               <FileName>startup_stm32h743xx.s</FileName>
               <FileType>2</FileType>
-              <FilePath>.\startup_stm32h743xx.s</FilePath>
+              <FilePath>..\src\keil\startup\startup_stm32h743xx.s</FilePath>
             </File>
             <File>
               <FileName>system_stm32h7xx.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\system_stm32h7xx.c</FilePath>
+              <FilePath>..\src\keil\startup\system_stm32h7xx.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -745,7 +745,7 @@
               <MiscControls>-Wpedantic -Wdouble-promotion -Wold-style-definition -fdata-sections -fno-common -pipe -MP -Werror -ffast-math -fmerge-all-constants</MiscControls>
               <Define>USE_HAL_DRIVER USE_FULL_LL_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\lib\main\CMSIS\Core\Include;..\lib\main\STM32H7\Drivers\CMSIS\Device\ST\STM32H7xx\Include;..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Inc;..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Inc\Legacy;..\src\main;..\src\main\startup</IncludePath>
+              <IncludePath>..\lib\main\CMSIS\Core\Include;..\lib\main\STM32H7\Drivers\CMSIS\Device\ST\STM32H7xx\Include;..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Inc;..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Inc\Legacy;..\src\keil;..\src\keil\startup;..\src\keil\drivers;..\src\keil\drivers\mcu</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -795,7 +795,7 @@
             <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\main.c</FilePath>
+              <FilePath>..\src\keil\main.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -805,12 +805,12 @@
             <File>
               <FileName>startup_stm32h743xx.s</FileName>
               <FileType>2</FileType>
-              <FilePath>.\startup_stm32h743xx.s</FilePath>
+              <FilePath>..\src\keil\startup\startup_stm32h743xx.s</FilePath>
             </File>
             <File>
               <FileName>system_stm32h7xx.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\system_stm32h7xx.c</FilePath>
+              <FilePath>..\src\keil\startup\system_stm32h7xx.c</FilePath>
             </File>
           </Files>
         </Group>
