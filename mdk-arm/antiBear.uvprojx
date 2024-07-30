@@ -194,7 +194,7 @@
             <EndSel>0</EndSel>
             <uLtcg>0</uLtcg>
             <nSecure>0</nSecure>
-            <RoSelD>4</RoSelD>
+            <RoSelD>3</RoSelD>
             <RwSelD>4</RwSelD>
             <CodeSel>0</CodeSel>
             <OptFeed>0</OptFeed>
@@ -286,8 +286,8 @@
               </OCR_RVCT5>
               <OCR_RVCT6>
                 <Type>0</Type>
-                <StartAddress>0x30000000</StartAddress>
-                <Size>0x48000</Size>
+                <StartAddress>0xd0000000</StartAddress>
+                <Size>0x4000000</Size>
               </OCR_RVCT6>
               <OCR_RVCT7>
                 <Type>0</Type>
@@ -337,10 +337,10 @@
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
             <VariousControls>
-              <MiscControls>-Wpedantic -Wdouble-promotion -Wold-style-definition -fdata-sections -fno-common -pipe -MP</MiscControls>
+              <MiscControls>-Wdouble-promotion -Wold-style-definition -fdata-sections -fno-common -pipe -MP</MiscControls>
               <Define>DEBUG USE_HAL_DRIVER USE_FULL_LL_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\lib\main\CMSIS\Core\Include;..\lib\main\STM32H7\Drivers\CMSIS\Device\ST\STM32H7xx\Include;..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Inc;..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Inc\Legacy;..\src\keil;..\src\keil\startup;..\src\keil\drivers;..\src\keil\drivers\mcu</IncludePath>
+              <IncludePath>..\lib\main\CMSIS\Core\Include;..\lib\main\STM32H7\Drivers\CMSIS\Device\ST\STM32H7xx\Include;..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Inc;..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Inc\Legacy;..\src\keil;..\src\keil\startup;..\src\keil\build;..\src\keil\drivers;..\src\keil\drivers\mcu</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -362,7 +362,7 @@
             </VariousControls>
           </Aads>
           <LDads>
-            <umfTarg>0</umfTarg>
+            <umfTarg>1</umfTarg>
             <Ropi>0</Ropi>
             <Rwpi>0</Rwpi>
             <noStLib>0</noStLib>
@@ -371,7 +371,7 @@
             <TextAddressRange>0x08000000</TextAddressRange>
             <DataAddressRange>0x20000000</DataAddressRange>
             <pXoBase></pXoBase>
-            <ScatterFile></ScatterFile>
+            <ScatterFile>..\src\link\stm32_flash_h743_2m.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
             <Misc></Misc>
@@ -437,12 +437,47 @@
             <File>
               <FileName>startup_stm32h743xx.s</FileName>
               <FileType>2</FileType>
-              <FilePath>..\src\keil\startup\startup_stm32h743xx.s</FilePath>
+              <FilePath>..\src\keil\startup\arm\startup_stm32h743xx.s</FilePath>
             </File>
             <File>
               <FileName>system_stm32h7xx.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\keil\startup\system_stm32h7xx.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>main/system</GroupName>
+          <Files>
+            <File>
+              <FileName>init.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\system\init.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>main/drivers</GroupName>
+          <Files>
+            <File>
+              <FileName>system.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\system.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>main/drivers/mcu</GroupName>
+          <Files>
+            <File>
+              <FileName>system_stm32h7xx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\mcu\system_stm32h7xx.c</FilePath>
+            </File>
+            <File>
+              <FileName>memprot_hal.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\mcu\memprot_hal.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -775,14 +810,14 @@
             <v6LangP>3</v6LangP>
             <vShortEn>1</vShortEn>
             <vShortWch>1</vShortWch>
-            <v6Lto>1</v6Lto>
+            <v6Lto>0</v6Lto>
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
             <VariousControls>
-              <MiscControls>-Wpedantic -Wdouble-promotion -Wold-style-definition -fdata-sections -fno-common -pipe -MP -Werror -ffast-math -fmerge-all-constants</MiscControls>
+              <MiscControls>-Wdouble-promotion -Wold-style-definition -fdata-sections -fno-common -pipe -MP -Werror -ffast-math -fmerge-all-constants</MiscControls>
               <Define>USE_HAL_DRIVER USE_FULL_LL_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\lib\main\CMSIS\Core\Include;..\lib\main\STM32H7\Drivers\CMSIS\Device\ST\STM32H7xx\Include;..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Inc;..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Inc\Legacy;..\src\keil;..\src\keil\startup;..\src\keil\drivers;..\src\keil\drivers\mcu</IncludePath>
+              <IncludePath>..\lib\main\CMSIS\Core\Include;..\lib\main\STM32H7\Drivers\CMSIS\Device\ST\STM32H7xx\Include;..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Inc;..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Inc\Legacy;..\src\keil;..\src\keil\startup;..\src\keil\build;..\src\keil\drivers;..\src\keil\drivers\mcu</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -813,7 +848,7 @@
             <TextAddressRange>0x08000000</TextAddressRange>
             <DataAddressRange>0x20000000</DataAddressRange>
             <pXoBase></pXoBase>
-            <ScatterFile></ScatterFile>
+            <ScatterFile>..\src\link\stm32_flash_h743_2m.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
             <Misc></Misc>
@@ -879,12 +914,47 @@
             <File>
               <FileName>startup_stm32h743xx.s</FileName>
               <FileType>2</FileType>
-              <FilePath>..\src\keil\startup\startup_stm32h743xx.s</FilePath>
+              <FilePath>..\src\keil\startup\arm\startup_stm32h743xx.s</FilePath>
             </File>
             <File>
               <FileName>system_stm32h7xx.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\keil\startup\system_stm32h7xx.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>main/system</GroupName>
+          <Files>
+            <File>
+              <FileName>init.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\system\init.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>main/drivers</GroupName>
+          <Files>
+            <File>
+              <FileName>system.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\system.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>main/drivers/mcu</GroupName>
+          <Files>
+            <File>
+              <FileName>system_stm32h7xx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\mcu\system_stm32h7xx.c</FilePath>
+            </File>
+            <File>
+              <FileName>memprot_hal.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\mcu\memprot_hal.c</FilePath>
             </File>
           </Files>
         </Group>

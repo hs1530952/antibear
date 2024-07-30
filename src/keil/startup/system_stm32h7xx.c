@@ -48,8 +48,8 @@
 
 #include "platform.h"
 
-// #include "drivers/memprot.h"
-// #include "drivers/system.h"
+#include "drivers/memprot.h"
+#include "drivers/system.h"
 
 #if !defined  (HSE_VALUE)
   #define HSE_VALUE    ((uint32_t)25000000) /*!< Value of the External oscillator in Hz */
@@ -555,27 +555,27 @@ void SystemInit (void)
 
 void SystemSetup(void)
 {
-//   memProtReset();
+  memProtReset();
 
-//   initialiseMemorySections();
+  initialiseMemorySections();
 
-// #ifdef USE_HAL_DRIVER
-//   HAL_Init();
-// #endif
+#ifdef USE_HAL_DRIVER
+  HAL_Init();
+#endif
 
-//   SystemClock_Config();
-//   SystemCoreClockUpdate();
+  SystemClock_Config();
+  SystemCoreClockUpdate();
 
-// #ifdef STM32H7
-//   initialiseD2MemorySections();
-// #endif
+#ifdef STM32H7
+  initialiseD2MemorySections();
+#endif
 
-//   // Configure MPU
-//   memProtConfigure();
+  // Configure MPU
+  memProtConfigure();
 
-//   // Enable CPU L1-Cache
-//   SCB_EnableICache();
-//   SCB_EnableDCache();
+  // Enable CPU L1-Cache
+  SCB_EnableICache();
+  SCB_EnableDCache();
 }
 
 /**

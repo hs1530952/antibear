@@ -60,3 +60,6 @@ mdk-arm/DebugConfig
 *.uvguix.*
 *.uvoptx
 *.scvd
+
+# VS Code
+settings.json

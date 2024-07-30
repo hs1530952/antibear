@@ -40,7 +40,8 @@
                 "${workspaceFolder}/src/main/drivers",
                 "${workspaceFolder}/src/main/drivers/stm32/**",
                 "${workspaceFolder}/src/main/startup",
-                "${workspaceFolder}/src/main/target"
+                "${workspaceFolder}/src/main/target",
+                "${workspaceFolder}/src/keil/**"
             ],
             "defines": [
                 "DEBUG",

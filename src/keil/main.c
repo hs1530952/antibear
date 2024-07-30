@@ -3,10 +3,14 @@
 
 #include "platform.h"
 
+#include "system/init.h"
+
 void run(void);
 
 int main(void)
 {
+    init();
+
     run();
 
     return 0;
