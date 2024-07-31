@@ -419,6 +419,26 @@
               <FileType>1</FileType>
               <FilePath>..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_pwr_ex.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32h7xx_hal_tim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_tim.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7xx_hal_tim_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_tim_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7xx_hal_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7xx_hal_dma_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dma_ex.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -473,6 +493,11 @@
               <FileName>system_stm32h7xx.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\keil\drivers\mcu\system_stm32h7xx.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7xx_hal_timebase_tim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\mcu\stm32h7xx_hal_timebase_tim.c</FilePath>
             </File>
             <File>
               <FileName>memprot_hal.c</FileName>
@@ -896,6 +921,26 @@
               <FileType>1</FileType>
               <FilePath>..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_pwr_ex.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32h7xx_hal_tim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_tim.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7xx_hal_tim_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_tim_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7xx_hal_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7xx_hal_dma_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dma_ex.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -950,6 +995,11 @@
               <FileName>system_stm32h7xx.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\keil\drivers\mcu\system_stm32h7xx.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7xx_hal_timebase_tim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\mcu\stm32h7xx_hal_timebase_tim.c</FilePath>
             </File>
             <File>
               <FileName>memprot_hal.c</FileName>

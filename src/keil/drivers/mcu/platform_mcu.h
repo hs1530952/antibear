@@ -4,6 +4,12 @@
 #include "stm32h7xx_hal.h"
 #include "system_stm32h7xx.h"
 
+#define SystemTIM                       TIM7
+#define SystemTIM_IRQHandler            TIM7_IRQHandler
+#define SystemTIM_CheckUpdateFlag()     ((SystemTIM->SR & TIM_IT_UPDATE) && (SystemTIM->DIER & TIM_IT_UPDATE))
+#define SystemTIM_ClearUpdateFlag()     (SystemTIM->SR = ~TIM_IT_UPDATE)
+#define SystemTIM_GetCNT()              (SystemTIM->CNT)
+
 #if defined(__CC_ARM) || defined(__ARMCC_VERSION)
 #define DMA_DATA_ZERO_INIT          __attribute__ ((section(".bss.dmaram_bss"), aligned(32)))
 #define DMA_DATA                    __attribute__ ((section(".dmaram_data"), aligned(32)))

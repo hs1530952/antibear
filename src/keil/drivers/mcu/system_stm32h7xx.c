@@ -22,7 +22,7 @@ void systemInit(void)
     __HAL_RCC_D2SRAM3_CLK_ENABLE();
 
     // Init cycle counter
-    // cycleCounterInit();
+    cycleCounterInit();
 
     // SysTick is updated whenever HAL_RCC_ClockConfig is called.
 }
