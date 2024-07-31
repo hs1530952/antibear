@@ -5,6 +5,8 @@
 
 #include "system/init.h"
 
+#include "scheduler/scheduler.h"
+
 void run(void);
 
 int main(void)
@@ -19,6 +21,6 @@ int main(void)
 void FAST_CODE run(void)
 {
     while (true) {
-        __NOP();
+        scheduler();
     }
 }

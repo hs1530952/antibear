@@ -10,6 +10,8 @@
 #define SystemTIM_ClearUpdateFlag()     (SystemTIM->SR = ~TIM_IT_UPDATE)
 #define SystemTIM_GetCNT()              (SystemTIM->CNT)
 
+#define SCHEDULER_DELAY_LIMIT           100
+
 #if defined(__CC_ARM) || defined(__ARMCC_VERSION)
 #define DMA_DATA_ZERO_INIT          __attribute__ ((section(".bss.dmaram_bss"), aligned(32)))
 #define DMA_DATA                    __attribute__ ((section(".dmaram_data"), aligned(32)))

@@ -340,7 +340,7 @@
               <MiscControls>-Wdouble-promotion -Wold-style-definition -fdata-sections -fno-common -pipe -MP</MiscControls>
               <Define>DEBUG USE_HAL_DRIVER USE_FULL_LL_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\lib\main\CMSIS\Core\Include;..\lib\main\STM32H7\Drivers\CMSIS\Device\ST\STM32H7xx\Include;..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Inc;..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Inc\Legacy;..\src\keil;..\src\keil\startup;..\src\keil\build;..\src\keil\drivers;..\src\keil\drivers\mcu</IncludePath>
+              <IncludePath>..\lib\main\CMSIS\Core\Include;..\lib\main\STM32H7\Drivers\CMSIS\Device\ST\STM32H7xx\Include;..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Inc;..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Inc\Legacy;..\src\keil;..\src\keil\startup;..\src\keil\build;..\src\keil\system;..\src\keil\scheduler;..\src\keil\drivers;..\src\keil\drivers\mcu</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -473,6 +473,21 @@
               <FileName>init.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\keil\system\init.c</FilePath>
+            </File>
+            <File>
+              <FileName>tasks.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\system\tasks.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>main/scheduler</GroupName>
+          <Files>
+            <File>
+              <FileName>scheduler.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\scheduler\scheduler.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -975,6 +990,21 @@
               <FileName>init.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\keil\system\init.c</FilePath>
+            </File>
+            <File>
+              <FileName>tasks.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\system\tasks.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>main/scheduler</GroupName>
+          <Files>
+            <File>
+              <FileName>scheduler.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\scheduler\scheduler.c</FilePath>
             </File>
           </Files>
         </Group>
