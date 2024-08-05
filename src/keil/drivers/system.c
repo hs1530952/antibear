@@ -53,10 +53,8 @@ void SystemTIM_IRQHandler(void)
             sysTickPending = 0;
         }
     }
-#ifdef USE_HAL_DRIVER
     // used by the HAL for some timekeeping and timeouts, should always be 1ms
     HAL_IncTick();
-#endif
 }
 
 // Return system uptime in microseconds (rollover in 70minutes)

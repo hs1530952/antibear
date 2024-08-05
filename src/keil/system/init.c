@@ -10,6 +10,8 @@
 
 #include "system/init.h"
 
+uint8_t systemState = SYSTEM_STATE_INITIALISING;
+
 void init(void)
 {
     systemInit();
@@ -19,4 +21,6 @@ void init(void)
     tasksInitData();
 
     tasksInit();
+
+    systemState |= SYSTEM_STATE_READY;
 }
