@@ -36,3 +36,5 @@
 #define SDRAM2_DATA                 __attribute__ ((section(".sdram2_data"), aligned(4)))
 #define DMA_VRAM                    __attribute__((section(".DMA_VRAM"), aligned(32)))
 #endif
+
+#define FAST_IRQ_HANDLER FAST_CODE

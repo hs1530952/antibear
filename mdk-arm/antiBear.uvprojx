@@ -439,6 +439,26 @@
               <FileType>1</FileType>
               <FilePath>..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dma_ex.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32h7xx_hal_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7xx_hal_uart_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_uart_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7xx_hal_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7xx_hal_usart_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_usart_ex.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -492,12 +512,27 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>main/build</GroupName>
+          <Files>
+            <File>
+              <FileName>debugSerial.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\build\debugSerial.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>main/drivers</GroupName>
           <Files>
             <File>
               <FileName>system.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\keil\drivers\system.c</FilePath>
+            </File>
+            <File>
+              <FileName>uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\uart.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -518,6 +553,16 @@
               <FileName>memprot_hal.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\keil\drivers\mcu\memprot_hal.c</FilePath>
+            </File>
+            <File>
+              <FileName>io.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\mcu\io.c</FilePath>
+            </File>
+            <File>
+              <FileName>uart_hal.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\mcu\uart_hal.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -956,6 +1001,26 @@
               <FileType>1</FileType>
               <FilePath>..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dma_ex.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32h7xx_hal_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7xx_hal_uart_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_uart_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7xx_hal_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7xx_hal_usart_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_usart_ex.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1009,12 +1074,27 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>main/build</GroupName>
+          <Files>
+            <File>
+              <FileName>debugSerial.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\build\debugSerial.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>main/drivers</GroupName>
           <Files>
             <File>
               <FileName>system.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\keil\drivers\system.c</FilePath>
+            </File>
+            <File>
+              <FileName>uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\uart.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1035,6 +1115,16 @@
               <FileName>memprot_hal.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\keil\drivers\mcu\memprot_hal.c</FilePath>
+            </File>
+            <File>
+              <FileName>io.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\mcu\io.c</FilePath>
+            </File>
+            <File>
+              <FileName>uart_hal.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\mcu\uart_hal.c</FilePath>
             </File>
           </Files>
         </Group>
