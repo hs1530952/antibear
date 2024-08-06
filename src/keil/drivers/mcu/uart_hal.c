@@ -30,7 +30,7 @@ static void uartConfigurePinInversion(uartPort_t *uartPort)
 
 static void uartConfigurePinSwap(uartPort_t *uartPort)
 {
-    if (uartPort->hardware.pinSwap) {
+    if (uartPort->hardware->pinSwap) {
         uartPort->Handle.AdvancedInit.AdvFeatureInit |= UART_ADVFEATURE_SWAP_INIT;
         uartPort->Handle.AdvancedInit.Swap = UART_ADVFEATURE_SWAP_ENABLE;
     }
@@ -87,7 +87,7 @@ void uartReconfigure(uartPort_t *uartPort)
 
 bool checkUsartTxOutput(uartPort_t *uartPort)
 {
-    pinDef_t *txIO = &uartPort->hardware.txPin.pin;
+    pinDef_t *txIO = (pinDef_t *)&uartPort->hardware->txPin.pin;
 
     if ((uartPort->txPinState == TX_PIN_MONITOR) && txIO) {
         if (IORead(txIO)) {
@@ -95,7 +95,7 @@ bool checkUsartTxOutput(uartPort_t *uartPort)
 
             // Enable USART TX output
             uartPort->txPinState = TX_PIN_ACTIVE;
-            IOConfigGPIOAF(txIO, IOCFG_AF_PP, uartPort->hardware.txPin.af);
+            IOConfigGPIOAF(txIO, IOCFG_AF_PP, uartPort->hardware->txPin.af);
 
             // Enable the UART transmitter
             SET_BIT(uartPort->Handle.Instance->CR1, USART_CR1_TE);
@@ -118,7 +118,7 @@ void uartTxMonitor(uartPort_t *uartPort)
 
         // Switch TX to an input with pullup so it's state can be monitored
         uartPort->txPinState = TX_PIN_MONITOR;
-        IOConfigGPIO(&uartPort->hardware.txPin.pin, IOCFG_IPU);
+        IOConfigGPIO((pinDef_t *)&uartPort->hardware->txPin.pin, IOCFG_IPU);
     }
 }
 
@@ -251,21 +251,21 @@ void uartPreInit(uartPort_t *uartPort, uint32_t baudRate, portMode_e mode, portO
 
     uartPort->config.baudRate = baudRate;
 
-    uartPort->USARTx = uartPort->hardware.reg;
+    uartPort->USARTx = uartPort->hardware->reg;
 
-    uartPort->rxBuffer = uartPort->hardware.rxBuffer;
-    uartPort->txBuffer = uartPort->hardware.txBuffer;
-    uartPort->rxBufferSize = uartPort->hardware.rxBufferSize;
-    uartPort->txBufferSize = uartPort->hardware.txBufferSize;
+    uartPort->rxBuffer = uartPort->hardware->rxBuffer;
+    uartPort->txBuffer = uartPort->hardware->txBuffer;
+    uartPort->rxBufferSize = uartPort->hardware->rxBufferSize;
+    uartPort->txBufferSize = uartPort->hardware->txBufferSize;
 
     uartPort->checkUsartTxOutput = checkUsartTxOutput;
 
-    uartPort->Handle.Instance = uartPort->hardware.reg;
+    uartPort->Handle.Instance = uartPort->hardware->reg;
 
     uartSetRCC(uartPort);
 
-    pinDef_t *txIO = &uartPort->hardware.txPin.pin;
-    pinDef_t *rxIO = &uartPort->hardware.rxPin.pin;
+    pinDef_t *txIO = (pinDef_t *)&uartPort->hardware->txPin.pin;
+    pinDef_t *rxIO = (pinDef_t *)&uartPort->hardware->rxPin.pin;
 
     uartPort->txPinState = TX_PIN_IGNORE;
 
@@ -275,7 +275,7 @@ void uartPreInit(uartPort_t *uartPort, uint32_t baudRate, portMode_e mode, portO
             GPIO_SPEED_FREQ_HIGH,
             ((options & SERIAL_INVERTED) || (options & SERIAL_BIDIR_PP_PD)) ? GPIO_PULLDOWN : GPIO_PULLUP
         );
-        IOConfigGPIOAF(txIO, ioCfg, uartPort->hardware.rxPin.af);
+        IOConfigGPIOAF(txIO, ioCfg, uartPort->hardware->rxPin.af);
     } else {
         if ((mode & MODE_TX) && txIO) {
             if (options & SERIAL_CHECK_TX) {
@@ -283,15 +283,15 @@ void uartPreInit(uartPort_t *uartPort, uint32_t baudRate, portMode_e mode, portO
                 // Switch TX to an input with pullup so it's state can be monitored
                 uartTxMonitor(uartPort);
             } else {
-                IOConfigGPIOAF(txIO, IOCFG_AF_PP, uartPort->hardware.rxPin.af);
+                IOConfigGPIOAF(txIO, IOCFG_AF_PP, uartPort->hardware->rxPin.af);
             }
         }
 
         if ((mode & MODE_RX) && rxIO) {
-            IOConfigGPIOAF(rxIO, IOCFG_AF_PP,uartPort->hardware.rxPin.af);
+            IOConfigGPIOAF(rxIO, IOCFG_AF_PP,uartPort->hardware->rxPin.af);
         }
     }
 
-    HAL_NVIC_SetPriority(uartPort->hardware.rxIrq, NVIC_PRIORITY_BASE(uartPort->hardware.rxPriority), NVIC_PRIORITY_SUB(uartPort->hardware.rxPriority));
-    HAL_NVIC_EnableIRQ(uartPort->hardware.rxIrq);
+    HAL_NVIC_SetPriority(uartPort->hardware->rxIrq, NVIC_PRIORITY_BASE(uartPort->hardware->rxPriority), NVIC_PRIORITY_SUB(uartPort->hardware->rxPriority));
+    HAL_NVIC_EnableIRQ(uartPort->hardware->rxIrq);
 }

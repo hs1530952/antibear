@@ -78,7 +78,7 @@ typedef struct uartConfig_s {
 } uartConfig_t;
 
 typedef struct uartPort_s {
-    uartHardware_t hardware;
+    const uartHardware_t *hardware;
     uartConfig_t config;
 
     uint32_t rxBufferSize;

@@ -11,9 +11,34 @@
 
 #define DEBUG_SERIAL_OPTIONS    (SERIAL_NOT_INVERTED | SERIAL_STOPBITS_1 | SERIAL_PARITY_NO | SERIAL_UNIDIR | SERIAL_CHECK_TX)
 
+DMA_RAM uint8_t debugSerialRxBuffer[256];
+DMA_RAM uint8_t debugSerialTxBuffer[256];
+
 uartPort_t debugSerial;
-DMA_RAM uint8_t rxBuffer[256];
-DMA_RAM uint8_t txBuffer[256];
+const uartHardware_t debugSerialHardware = {
+    .reg = USART1,
+    
+    .rxPin.pin.GPIOx = GPIOA,
+    .rxPin.pin.GPIO_Pin = GPIO_PIN_10,
+    .rxPin.af = GPIO_AF7_USART1,
+
+    .txPin.pin.GPIOx = GPIOA,
+    .txPin.pin.GPIO_Pin = GPIO_PIN_9,
+    .txPin.af = GPIO_AF7_USART1,
+
+    .pinSwap = false,
+
+    .rxBufferSize = 256,
+    .txBufferSize = 256,
+    .rxBuffer = debugSerialRxBuffer,
+    .txBuffer = debugSerialTxBuffer,
+
+    .txIrq = USART1_IRQn,
+    .rxIrq = USART1_IRQn,
+
+    .txPriority = NVIC_PRIO_SERIALUART1_TXDMA,
+    .rxPriority = NVIC_PRIO_SERIALUART1,
+};
 
 FAST_IRQ_HANDLER void USART1_IRQHandler(void)
 {
@@ -24,28 +49,7 @@ void debugSerialInit(void)
 {
     memset(&debugSerial, 0x00, sizeof(uartPort_t));
 
-    debugSerial.hardware.reg = USART1;
-
-    debugSerial.hardware.rxPin.pin.GPIOx = GPIOA;
-    debugSerial.hardware.rxPin.pin.GPIO_Pin = GPIO_PIN_10;
-    debugSerial.hardware.rxPin.af = GPIO_AF7_USART1;
-
-    debugSerial.hardware.txPin.pin.GPIOx = GPIOA;
-    debugSerial.hardware.txPin.pin.GPIO_Pin = GPIO_PIN_9;
-    debugSerial.hardware.txPin.af = GPIO_AF7_USART1;
-
-    debugSerial.hardware.pinSwap = false;
-
-    debugSerial.hardware.rxBufferSize = 256;
-    debugSerial.hardware.txBufferSize = 256;
-    debugSerial.hardware.rxBuffer = rxBuffer;
-    debugSerial.hardware.txBuffer = txBuffer;
-
-    debugSerial.hardware.txIrq = USART1_IRQn;
-    debugSerial.hardware.rxIrq = USART1_IRQn;
-
-    debugSerial.hardware.txPriority = NVIC_PRIO_SERIALUART1_TXDMA;
-    debugSerial.hardware.rxPriority = NVIC_PRIO_SERIALUART1;
+    debugSerial.hardware = &debugSerialHardware;
 
     uartOpen(&debugSerial, NULL, NULL, 460800, MODE_RXTX, DEBUG_SERIAL_OPTIONS);
 }
