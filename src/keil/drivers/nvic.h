@@ -6,6 +6,8 @@
 #define NVIC_PRIO_SERIALUART1_TXDMA        NVIC_BUILD_PRIORITY(1, 1)
 #define NVIC_PRIO_SERIALUART1_RXDMA        NVIC_BUILD_PRIORITY(1, 1)
 #define NVIC_PRIO_SERIALUART1              NVIC_BUILD_PRIORITY(1, 1)
+#define NVIC_PRIO_I2C_ER                   NVIC_BUILD_PRIORITY(0, 0)
+#define NVIC_PRIO_I2C_EV                   NVIC_BUILD_PRIORITY(0, 0)
 
 // utility macros to join/split priority
 #define NVIC_PRIORITY_GROUPING NVIC_PRIORITYGROUP_2

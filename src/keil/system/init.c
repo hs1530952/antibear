@@ -6,6 +6,8 @@
 
 #include "build/debugSerial.h"
 
+#include "drivers/io.h"
+#include "drivers/i2c.h"
 #include "drivers/system.h"
 
 #include "system/tasks.h"
@@ -24,6 +26,8 @@ void init(void)
     // Initialize task data as soon as possible. Has to be done before tasksInit()
     // and any init code that may try to modify task behaviour before tasksInit().
     tasksInitData();
+
+    i2cInit();
 
     tasksInit();
 

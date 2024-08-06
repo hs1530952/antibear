@@ -18,26 +18,20 @@ uartPort_t debugSerial;
 const uartHardware_t debugSerialHardware = {
     .reg = USART1,
     
-    .rxPin.pin.GPIOx = GPIOA,
-    .rxPin.pin.GPIO_Pin = GPIO_PIN_10,
-    .rxPin.af = GPIO_AF7_USART1,
-
-    .txPin.pin.GPIOx = GPIOA,
-    .txPin.pin.GPIO_Pin = GPIO_PIN_9,
-    .txPin.af = GPIO_AF7_USART1,
-
+    .rxPin = {{GPIOA, GPIO_PIN_10}, GPIO_AF7_USART1},
+    .txPin = {{GPIOA, GPIO_PIN_9}, GPIO_AF7_USART1},
     .pinSwap = false,
-
-    .rxBufferSize = 256,
-    .txBufferSize = 256,
-    .rxBuffer = debugSerialRxBuffer,
-    .txBuffer = debugSerialTxBuffer,
 
     .txIrq = USART1_IRQn,
     .rxIrq = USART1_IRQn,
 
     .txPriority = NVIC_PRIO_SERIALUART1_TXDMA,
     .rxPriority = NVIC_PRIO_SERIALUART1,
+
+    .rxBufferSize = 256,
+    .txBufferSize = 256,
+    .rxBuffer = debugSerialRxBuffer,
+    .txBuffer = debugSerialTxBuffer,
 };
 
 FAST_IRQ_HANDLER void USART1_IRQHandler(void)

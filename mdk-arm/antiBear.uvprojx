@@ -459,6 +459,16 @@
               <FileType>1</FileType>
               <FilePath>..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_usart_ex.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32h7xx_hal_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7xx_hal_i2c_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_i2c_ex.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -534,6 +544,16 @@
               <FileType>1</FileType>
               <FilePath>..\src\keil\drivers\uart.c</FilePath>
             </File>
+            <File>
+              <FileName>i2c_utils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\i2c_utils.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c_timing.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\i2c_timing.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -563,6 +583,11 @@
               <FileName>uart_hal.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\keil\drivers\mcu\uart_hal.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c_hal.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\mcu\i2c_hal.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1021,6 +1046,16 @@
               <FileType>1</FileType>
               <FilePath>..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_usart_ex.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32h7xx_hal_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7xx_hal_i2c_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_i2c_ex.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1096,6 +1131,16 @@
               <FileType>1</FileType>
               <FilePath>..\src\keil\drivers\uart.c</FilePath>
             </File>
+            <File>
+              <FileName>i2c_utils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\i2c_utils.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c_timing.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\i2c_timing.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1125,6 +1170,11 @@
               <FileName>uart_hal.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\keil\drivers\mcu\uart_hal.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c_hal.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\mcu\i2c_hal.c</FilePath>
             </File>
           </Files>
         </Group>
