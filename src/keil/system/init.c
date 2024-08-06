@@ -9,6 +9,8 @@
 #include "drivers/io.h"
 #include "drivers/i2c.h"
 #include "drivers/system.h"
+#include "drivers/eeprom/eeprom_impl.h"
+#include "drivers/eeprom/eeprom.h"
 
 #include "system/tasks.h"
 
@@ -28,6 +30,7 @@ void init(void)
     tasksInitData();
 
     i2cInit();
+    eepromInit();
 
     tasksInit();
 

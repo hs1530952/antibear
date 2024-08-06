@@ -173,7 +173,7 @@ bool i2cWrite(I2CDevice device, uint8_t addr_, uint8_t reg_, uint8_t data)
 }
 
 // Non-blocking write
-bool i2cWriteBuffer(I2CDevice device, uint8_t addr_, uint8_t reg_, uint8_t len_, uint8_t *data)
+bool i2cWriteBuffer(I2CDevice device, uint8_t addr_, uint8_t reg_, uint16_t len_, uint8_t *data)
 {
     if (device >= I2CDEV_COUNT) {
         return false;
@@ -200,7 +200,7 @@ bool i2cWriteBuffer(I2CDevice device, uint8_t addr_, uint8_t reg_, uint8_t len_,
 }
 
 // Blocking read
-bool i2cRead(I2CDevice device, uint8_t addr_, uint8_t reg_, uint8_t len_, uint8_t *buf)
+bool i2cRead(I2CDevice device, uint8_t addr_, uint8_t reg_, uint16_t len_, uint8_t *buf)
 {
     if (device >= I2CDEV_COUNT) {
         return false;
@@ -226,7 +226,7 @@ bool i2cRead(I2CDevice device, uint8_t addr_, uint8_t reg_, uint8_t len_, uint8_
 }
 
 // Non-blocking read
-bool i2cReadBuffer(I2CDevice device, uint8_t addr_, uint8_t reg_, uint8_t len_, uint8_t *buf)
+bool i2cReadBuffer(I2CDevice device, uint8_t addr_, uint8_t reg_, uint16_t len_, uint8_t *buf)
 {
     if (device >= I2CDEV_COUNT) {
         return false;

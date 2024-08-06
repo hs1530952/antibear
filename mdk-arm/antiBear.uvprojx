@@ -591,6 +591,21 @@
             </File>
           </Files>
         </Group>
+        <Group>
+          <GroupName>main/drivers/eeprom</GroupName>
+          <Files>
+            <File>
+              <FileName>eeprom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\eeprom\eeprom.c</FilePath>
+            </File>
+            <File>
+              <FileName>eeprom_at24c02.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\eeprom\eeprom_at24c02.c</FilePath>
+            </File>
+          </Files>
+        </Group>
       </Groups>
     </Target>
     <Target>
@@ -1175,6 +1190,21 @@
               <FileName>i2c_hal.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\keil\drivers\mcu\i2c_hal.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>main/drivers/eeprom</GroupName>
+          <Files>
+            <File>
+              <FileName>eeprom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\eeprom\eeprom.c</FilePath>
+            </File>
+            <File>
+              <FileName>eeprom_at24c02.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\eeprom\eeprom_at24c02.c</FilePath>
             </File>
           </Files>
         </Group>
