@@ -5,6 +5,7 @@
 
 #include "platform.h"
 
+#include "drivers/persistent.h"
 #include "drivers/nvic.h"
 #include "drivers/system.h"
 
@@ -13,6 +14,8 @@ void SystemSetup(void);
 void systemInit(void)
 {
     SystemSetup();
+
+    persistentObjectInit();
 
     // Configure NVIC preempt/priority groups
     HAL_NVIC_SetPriorityGrouping(NVIC_PRIORITY_GROUPING);
