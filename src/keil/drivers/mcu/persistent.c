@@ -1,8 +1,9 @@
 #include <stdint.h>
 #include "platform.h"
 
-#include "drivers/persistent.h"
+#include "drivers/time.h"
 #include "drivers/system.h"
+#include "drivers/persistent.h"
 
 #define PERSISTENT_OBJECT_MAGIC_VALUE (('C' << 24)|('B' << 16)|('R' << 8)|('M' << 0))
 
@@ -19,21 +20,18 @@ void persistentObjectWrite(persistentObjectId_e id, uint32_t value)
 {
     RTC_HandleTypeDef rtcHandle = { .Instance = RTC };
 
+    __HAL_RTC_WRITEPROTECTION_DISABLE(&rtcHandle); // Apply sequence
     HAL_RTCEx_BKUPWrite(&rtcHandle, id, value);
+    __HAL_RTC_WRITEPROTECTION_ENABLE(&rtcHandle); // Reset sequence
 }
 
 void persistentObjectRTCEnable(void)
 {
-    RTC_HandleTypeDef rtcHandle = { .Instance = RTC };
-
     HAL_PWR_EnableBkUpAccess(); // Disable backup domain protection
 
     __HAL_RCC_RTC_CLK_ENABLE();
 
-    // We don't need a clock source for RTC itself. Skip it.
-
-    __HAL_RTC_WRITEPROTECTION_ENABLE(&rtcHandle);  // Reset sequence
-    __HAL_RTC_WRITEPROTECTION_DISABLE(&rtcHandle); // Apply sequence
+    rtcInit();
 }
 
 void persistentObjectInit(void)
@@ -51,5 +49,8 @@ void persistentObjectInit(void)
             persistentObjectWrite(i, 0);
         }
         persistentObjectWrite(PERSISTENT_OBJECT_MAGIC, PERSISTENT_OBJECT_MAGIC_VALUE);
+        rtcCalendarInit();
+    } else {
+        rtcCalendarRecovery();
     }
 }

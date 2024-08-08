@@ -604,6 +604,11 @@
               <FileType>1</FileType>
               <FilePath>..\src\keil\drivers\mcu\persistent.c</FilePath>
             </File>
+            <File>
+              <FileName>rtc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\mcu\rtc.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1220,6 +1225,11 @@
               <FileName>persistent.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\keil\drivers\mcu\persistent.c</FilePath>
+            </File>
+            <File>
+              <FileName>rtc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\mcu\rtc.c</FilePath>
             </File>
           </Files>
         </Group>
