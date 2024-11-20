@@ -12,8 +12,6 @@ timeUs_t microsISR(void);
 timeMs_t millis(void);
 
 void rtcInit(void);
-void rtcCalendarInit(void);
-void rtcCalendarRecovery(void);
 
 bool rtcSetTimeZone(RTC_TIMEZONE_UTC_e *tz);
 bool rtcGetTimeZone(RTC_TIMEZONE_UTC_e *tz);

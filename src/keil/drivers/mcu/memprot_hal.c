@@ -171,6 +171,8 @@ void memProtReset(void)
     /* Disable the MPU */
     HAL_MPU_Disable();
 
+    // Disable existing regions
+
     for (uint8_t region = 0; region <= MAX_MPU_REGIONS; region++) {
         MPU_InitStruct.Enable = MPU_REGION_DISABLE;
         MPU_InitStruct.Number = region;

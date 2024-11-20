@@ -1,4 +1,3 @@
-/* USER CODE BEGIN Header */
 /**
   ******************************************************************************
   * @file    stm32h7xx_hal_timebase_tim.c
@@ -15,18 +14,16 @@
   *
   ******************************************************************************
   */
-/* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
 #include <stdbool.h>
 #include "stm32h7xx_hal.h"
-#include "stm32h7xx_hal_tim.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-TIM_HandleTypeDef        htim7;
+static TIM_HandleTypeDef        htim7;
 static uint32_t systemTIMClockFrequency;
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
@@ -47,7 +44,7 @@ static bool FindBestTIMParam(const uint32_t timClk, uint32_t *uwPrescalerValue, 
 
 /**
   * @brief  This function configures the TIM7 as a time base source.
-  *         The time source is configured  to have 1ms time base with a dedicated
+  *         The time source is configured to have 1ms time base with a dedicated
   *         Tick interrupt priority.
   * @note   This function is called  automatically at the beginning of program after
   *         reset by HAL_Init() or at any time when clock is configured, by HAL_RCC_ClockConfig().
@@ -58,7 +55,6 @@ HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority)
 {
   RCC_ClkInitTypeDef    clkconfig;
   uint32_t              uwTimclock, uwAPB1Prescaler;
-
   uint32_t              uwPrescalerValue, uwPeriodValue;
   uint32_t              pFLatency;
   HAL_StatusTypeDef     status;
@@ -71,6 +67,7 @@ HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority)
 
   /* Get APB1 prescaler */
   uwAPB1Prescaler = clkconfig.APB1CLKDivider;
+
   /* Compute TIM7 clock */
   if (uwAPB1Prescaler == RCC_HCLK_DIV1)
   {
@@ -90,7 +87,6 @@ HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority)
   htim7.Instance = TIM7;
 
   /* Initialize TIMx peripheral as follow:
-
   + Period = [(TIM7CLK/1000) - 1]. to have a (1/1000) s time base.
   + Prescaler = (uwTimclock/1000000 - 1) to have a 1MHz counter clock.
   + ClockDivision = 0
@@ -98,7 +94,7 @@ HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority)
   */
   htim7.Init.Period = uwPeriodValue;
   htim7.Init.Prescaler = uwPrescalerValue;
-  htim7.Init.ClockDivision = 0;
+  htim7.Init.ClockDivision = 0U;
   htim7.Init.CounterMode = TIM_COUNTERMODE_UP;
   status = HAL_TIM_Base_Init(&htim7);
   if (status == HAL_OK)
@@ -107,12 +103,12 @@ HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority)
     status = HAL_TIM_Base_Start_IT(&htim7);
     if (status == HAL_OK)
     {
-      /* Enable the TIM14 global Interrupt */
+      /* Enable the TIM7 global Interrupt */
       HAL_NVIC_EnableIRQ(TIM7_IRQn);
-      /* Configure the SysTick IRQ priority */
+      /* Configure the TIM7 IRQ priority */
       if (TickPriority < (1UL << __NVIC_PRIO_BITS))
       {
-        /* Configure the TIM IRQ priority */
+        /* Enable the TIM7 global Interrupt */
         HAL_NVIC_SetPriority(TIM7_IRQn, TickPriority, 0U);
         uwTickPrio = TickPriority;
       }
@@ -141,7 +137,7 @@ void HAL_SuspendTick(void)
 
 /**
   * @brief  Resume Tick increment.
-  * @note   Enable the tick increment by Enabling TIM76 update interrupt.
+  * @note   Enable the tick increment by Enabling TIM7 update interrupt.
   * @param  None
   * @retval None
   */

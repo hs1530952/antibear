@@ -2,8 +2,8 @@
 #include "platform.h"
 
 #include "drivers/time.h"
-#include "drivers/system.h"
 #include "drivers/persistent.h"
+#include "drivers/system.h"
 
 #define PERSISTENT_OBJECT_MAGIC_VALUE (('C' << 24)|('B' << 16)|('R' << 8)|('M' << 0))
 
@@ -29,9 +29,7 @@ void persistentObjectRTCEnable(void)
 {
     HAL_PWR_EnableBkUpAccess(); // Disable backup domain protection
 
-    __HAL_RCC_RTC_CLK_ENABLE();
-
-    rtcInit();
+    __HAL_RCC_RTC_CLK_ENABLE(); // Enable RTC module
 }
 
 void persistentObjectInit(void)
@@ -49,8 +47,6 @@ void persistentObjectInit(void)
             persistentObjectWrite(i, 0);
         }
         persistentObjectWrite(PERSISTENT_OBJECT_MAGIC, PERSISTENT_OBJECT_MAGIC_VALUE);
-        rtcCalendarInit();
-    } else {
-        rtcCalendarRecovery();
+        persistentObjectWrite(PERSISTENT_OBJECT_TIMEZONE, 0xFFFFFFFF);
     }
 }

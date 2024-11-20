@@ -1,5 +1,3 @@
-#include <stdbool.h>
-
 #include "platform.h"
 
 #include "drivers/io.h"
@@ -55,6 +53,23 @@ static void IOSetRCC(pinDef_t *io)
             __HAL_RCC_GPIOK_CLK_ENABLE();
         } break;
     }
+}
+
+static int IO_GPIOPinIdx(pinDef_t *io)
+{
+    if (!io) {
+        return - 1;
+    }
+    return 31 - __builtin_clz(io->GPIO_Pin);
+}
+
+// mask on stm32f103, bit index on stm32f303
+uint32_t IO_EXTI_Line(pinDef_t *io)
+{
+    if (!io) {
+        return 0;
+    }
+    return 1 << IO_GPIOPinIdx(io);
 }
 
 bool IORead(pinDef_t *io)

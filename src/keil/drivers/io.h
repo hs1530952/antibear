@@ -1,5 +1,14 @@
 #pragma once
 
+#include <stdbool.h>
+#include <stdint.h>
+
+#include "platform.h"
+
+// speed is packed between modebits 4 and 1,
+// 7       6        5        4         3         2        1        0
+// 0 <pupd-1> <pupd-0> <mode-4> <speed-1> <speed-0> <mode-1> <mode-0>
+// mode-4 is equivalent to STM32F4 otype (pushpull/od)
 #define IO_CONFIG(mode, speed, pupd) ((mode) | ((speed) << 2) | ((pupd) << 5))
 
 #define IOCFG_OUT_PP         IO_CONFIG(GPIO_MODE_OUTPUT_PP, GPIO_SPEED_FREQ_LOW,  GPIO_NOPULL)
@@ -21,7 +30,12 @@
 #define IO_CONFIG_GET_OTYPE(cfg) (((cfg) >> 4) & 0x01)
 #define IO_CONFIG_GET_PULL(cfg) (((cfg) >> 5) & 0x03)
 
-typedef uint8_t ioConfig_t;
+// pin config handling
+// pin config is packed into ioConfig_t to decrease memory requirements
+// IOCFG_x macros are defined for common combinations for all CPUs; this
+//  helps masking CPU differences
+
+typedef uint8_t ioConfig_t;  // packed IO configuration
 
 typedef struct pinDef_s {
     GPIO_TypeDef *GPIOx;

@@ -36,43 +36,38 @@ void rtcInit(void)
     /* Enable the RTC clock */
     __HAL_RCC_RTC_ENABLE();
 
-    /*##-2- RTC parameter configuration ########################################*/
     hrtc.Instance = RTC;
     HAL_RTC_WaitForSynchro(&hrtc);
 
-    hrtc.Init.HourFormat = RTC_HOURFORMAT_24;
-    hrtc.Init.AsynchPrediv = RTC_ASYNCHPREDIV;
-    hrtc.Init.SynchPrediv = RTC_SYNCHPREDIV;
-    hrtc.Init.OutPut = RTC_OUTPUT_DISABLE;
-    HAL_RTC_Init(&hrtc);
-}
-
-void rtcCalendarInit(void)
-{
-    RTC_TimeTypeDef sTime = {0};
-    RTC_DateTypeDef sDate = {0};
-
-    sTime.Hours = RTC_DEFAULT_HOUR;
-    sTime.Minutes = RTC_DEFAULT_MINUTE;
-    sTime.Seconds = RTC_DEFAULT_SECOND;
-    sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
-    sTime.StoreOperation = RTC_STOREOPERATION_RESET;
-
-    sDate.WeekDay = RTC_DEFAULT_WEEKDAY;
-    sDate.Month = RTC_DEFAULT_MONTH;
-    sDate.Date = RTC_DEFAULT_DATE;
-    sDate.Year = RTC_DEFAULT_YEAR;
-
-    HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
-    HAL_RTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
-
-    timezone = RTC_DEFAULT_TIMEZONE;
-    persistentObjectWrite(PERSISTENT_OBJECT_TIMEZONE, timezone);
-}
-
-void rtcCalendarRecovery(void)
-{
     timezone = persistentObjectRead(PERSISTENT_OBJECT_TIMEZONE);
+    if (timezone == 0xFFFFFFFF) {
+        /*##-2- RTC parameter configuration ########################################*/
+        hrtc.Init.HourFormat = RTC_HOURFORMAT_24;
+        hrtc.Init.AsynchPrediv = RTC_ASYNCHPREDIV;
+        hrtc.Init.SynchPrediv = RTC_SYNCHPREDIV;
+        hrtc.Init.OutPut = RTC_OUTPUT_DISABLE;
+        HAL_RTC_Init(&hrtc);
+
+        RTC_TimeTypeDef sTime = {0};
+        RTC_DateTypeDef sDate = {0};
+
+        sTime.Hours = RTC_DEFAULT_HOUR;
+        sTime.Minutes = RTC_DEFAULT_MINUTE;
+        sTime.Seconds = RTC_DEFAULT_SECOND;
+        sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
+        sTime.StoreOperation = RTC_STOREOPERATION_RESET;
+
+        sDate.WeekDay = RTC_DEFAULT_WEEKDAY;
+        sDate.Month = RTC_DEFAULT_MONTH;
+        sDate.Date = RTC_DEFAULT_DATE;
+        sDate.Year = RTC_DEFAULT_YEAR;
+
+        HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
+        HAL_RTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
+
+        timezone = RTC_DEFAULT_TIMEZONE;
+        persistentObjectWrite(PERSISTENT_OBJECT_TIMEZONE, timezone);
+    }
 }
 
 bool rtcSetTimeZone(RTC_TIMEZONE_UTC_e *tz)

@@ -10,6 +10,11 @@
 
 #include "system/tasks.h"
 
+static void taskMain(timeUs_t currentTimeUs)
+{
+    UNUSED(currentTimeUs);
+}
+
 static void taskHandleSerial(timeUs_t currentTimeUs)
 {
     UNUSED(currentTimeUs);
@@ -36,11 +41,17 @@ task_t tasks[TASK_COUNT];
 
 // Task ID data in .data (initialised data)
 task_attribute_t task_attributes[TASK_COUNT] = {
+
     [TASK_SYSTEM] = DEFINE_TASK("SYSTEM", "LOAD", NULL, taskSystemLoad, TASK_PERIOD_HZ(10), TASK_PRIORITY_MEDIUM_HIGH),
+    [TASK_MAIN] = DEFINE_TASK("SYSTEM", "UPDATE", NULL, taskMain, TASK_PERIOD_HZ(1000), TASK_PRIORITY_MEDIUM_HIGH),
 #ifdef DEBUG
     [TASK_DEBUG] = DEFINE_TASK("SYSTEM", "DEBUG", NULL, taskTest, TASK_PERIOD_HZ(1000), TASK_PRIORITY_LOW),
 #endif
     [TASK_SERIAL] = DEFINE_TASK("SERIAL", NULL, NULL, taskHandleSerial, TASK_PERIOD_HZ(100), TASK_PRIORITY_LOW), // 100 Hz should be enough to flush up to 115 bytes @ 115200 baud
+
+#ifdef USE_ADC_INTERNAL
+    [TASK_ADC_INTERNAL] = DEFINE_TASK("ADCINTERNAL", NULL, NULL, adcInternalProcess, TASK_PERIOD_HZ(1), TASK_PRIORITY_LOWEST),
+#endif
 };
 
 task_t *getTask(unsigned taskId)
@@ -60,9 +71,16 @@ void tasksInit(void)
 {
     schedulerInit();
 
+    setTaskEnabled(TASK_MAIN, true);
+
 #ifdef DEBUG
     setTaskEnabled(TASK_DEBUG, true);
 #endif
 
     setTaskEnabled(TASK_SERIAL, true);
+    // rescheduleTask(TASK_SERIAL, TASK_PERIOD_HZ(serialConfig()->serial_update_rate_hz));
+
+#ifdef USE_ADC_INTERNAL
+    setTaskEnabled(TASK_ADC_INTERNAL, true);
+#endif
 }

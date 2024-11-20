@@ -392,7 +392,6 @@ FAST_CODE void scheduler(void)
     }
 
     if (selectedTask) {
-        // Recheck the available time as checkCycles is only approximate
         timeDelta_t taskRequiredTimeUs = selectedTask->anticipatedExecutionTime >> TASK_EXEC_TIME_SHIFT;
         selectedTask->execTime = taskRequiredTimeUs;
         int32_t taskRequiredTimeCycles = (int32_t)clockMicrosToCycles((uint32_t)taskRequiredTimeUs);
@@ -427,8 +426,9 @@ FAST_CODE void scheduler(void)
 
 #if !defined(DEBUG)
     UNUSED(schedulerStartTimeUs);
-#endif
+#else
     UNUSED(taskExecutionTimeUs);
+#endif
 
     scheduleCount++;
 }

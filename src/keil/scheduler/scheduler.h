@@ -8,6 +8,8 @@
 
 #define TASK_STATS_MOVING_SUM_COUNT     8
 
+#define LOAD_PERCENTAGE_ONE             100
+
 #define SCHED_TASK_DEFER_MASK           0x07 // Scheduler loop count is masked with this and when 0 long running tasks are processed
 
 #define TASK_GUARD_MARGIN_MIN_US        3   // Add an amount to the estimate of a task duration
@@ -58,10 +60,14 @@ typedef struct {
 typedef enum {
     /* Actual tasks */
     TASK_SYSTEM = 0,
+    TASK_MAIN,
 #ifdef DEBUG
     TASK_DEBUG,
 #endif
     TASK_SERIAL,
+#ifdef USE_ADC_INTERNAL
+    TASK_ADC_INTERNAL,
+#endif
 
     /* Count of real tasks */
     TASK_COUNT,
