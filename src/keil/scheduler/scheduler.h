@@ -65,9 +65,7 @@ typedef enum {
     TASK_DEBUG,
 #endif
     TASK_SERIAL,
-#ifdef USE_ADC_INTERNAL
     TASK_ADC_INTERNAL,
-#endif
 
     /* Count of real tasks */
     TASK_COUNT,

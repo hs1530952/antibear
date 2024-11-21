@@ -8,6 +8,8 @@
 
 #include "scheduler/scheduler.h"
 
+#include "sensors/adcinternal.h"
+
 #include "system/tasks.h"
 
 static void taskMain(timeUs_t currentTimeUs)
@@ -49,9 +51,7 @@ task_attribute_t task_attributes[TASK_COUNT] = {
 #endif
     [TASK_SERIAL] = DEFINE_TASK("SERIAL", NULL, NULL, taskHandleSerial, TASK_PERIOD_HZ(100), TASK_PRIORITY_LOW), // 100 Hz should be enough to flush up to 115 bytes @ 115200 baud
 
-#ifdef USE_ADC_INTERNAL
     [TASK_ADC_INTERNAL] = DEFINE_TASK("ADCINTERNAL", NULL, NULL, adcInternalProcess, TASK_PERIOD_HZ(1), TASK_PRIORITY_LOWEST),
-#endif
 };
 
 task_t *getTask(unsigned taskId)
@@ -80,7 +80,5 @@ void tasksInit(void)
     setTaskEnabled(TASK_SERIAL, true);
     // rescheduleTask(TASK_SERIAL, TASK_PERIOD_HZ(serialConfig()->serial_update_rate_hz));
 
-#ifdef USE_ADC_INTERNAL
     setTaskEnabled(TASK_ADC_INTERNAL, true);
-#endif
 }

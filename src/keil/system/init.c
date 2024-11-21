@@ -6,6 +6,7 @@
 
 #include "build/debugSerial.h"
 
+#include "drivers/adc.h"
 #include "drivers/io.h"
 #include "drivers/i2c.h"
 #include "drivers/system.h"
@@ -15,6 +16,8 @@
 #include "system/tasks.h"
 
 #include "system/init.h"
+
+#include "sensors/adcinternal.h"
 
 uint8_t systemState = SYSTEM_STATE_INITIALISING;
 
@@ -30,6 +33,9 @@ void init(void)
     tasksInitData();
 
     i2cInit();
+    adcInit();
+    adcInternalInit();
+
     eepromInit();
 
     tasksInit();
