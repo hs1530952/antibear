@@ -14,7 +14,7 @@ typedef struct movingAverageStateUint16_s {
     uint8_t pos;
 } movingAverageStateUint16_t;
 
-uint16_t updateMovingAverageUint16_t(movingAverageStateUint16_t *state, uint16_t newValue)
+uint16_t updateMovingAverageUint16(movingAverageStateUint16_t *state, uint16_t newValue)
 {
     state->sum -= state->values[state->pos];
     state->values[state->pos] = newValue;
@@ -56,8 +56,8 @@ void adcInternalProcess(timeUs_t currentTimeUs)
     uint16_t vrefintSample = adcInternalReadVrefint();
     uint16_t tempsensorSample = adcInternalReadTempsensor();
 
-    adcVrefintValue = updateMovingAverageUint16_t(&adcVrefintAverageState, vrefintSample);
-    adcTempsensorValue = updateMovingAverageUint16_t(&adcTempsensorAverageState, tempsensorSample);
+    adcVrefintValue = updateMovingAverageUint16(&adcVrefintAverageState, vrefintSample);
+    adcTempsensorValue = updateMovingAverageUint16(&adcTempsensorAverageState, tempsensorSample);
 
     vrefMv = adcInternalCompensateVref(adcVrefintValue);
     coreTemperature = adcInternalComputeTemperature(adcTempsensorValue, vrefMv);

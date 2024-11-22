@@ -50,3 +50,5 @@ void IOToggle(pinDef_t *io);
 
 void IOConfigGPIO(pinDef_t *io, ioConfig_t cfg);
 void IOConfigGPIOAF(pinDef_t *io, ioConfig_t cfg, uint8_t af);
+
+bool IOCheckSame(pinDef_t io1, pinDef_t io2);

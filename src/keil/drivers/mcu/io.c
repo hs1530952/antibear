@@ -140,3 +140,12 @@ void IOConfigGPIOAF(pinDef_t *io, ioConfig_t cfg, uint8_t af)
 
     HAL_GPIO_Init(io->GPIOx, &init);
 }
+
+bool IOCheckSame(pinDef_t io1, pinDef_t io2)
+{
+    if (io1.GPIOx == io2.GPIOx && io1.GPIO_Pin == io2.GPIO_Pin) {
+        return true;
+    } else {
+        return false;
+    }
+}

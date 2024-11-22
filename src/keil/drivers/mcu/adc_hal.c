@@ -168,7 +168,7 @@ void adcInitDevice(adcDevice_t *adcdev, int channelCount)
 int adcFindTagMapEntry(pinDef_t pin)
 {
     for (int i = 0; i < ADC_TAG_MAP_COUNT; i++) {
-        if (adcTagMap[i].pin.GPIOx == pin.GPIOx && adcTagMap[i].pin.GPIO_Pin == pin.GPIO_Pin) {
+        if (IOCheckSame(adcTagMap[i].pin, pin)) {
             return i;
         }
     }
