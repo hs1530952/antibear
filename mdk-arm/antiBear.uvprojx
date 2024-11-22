@@ -479,6 +479,16 @@
               <FileType>1</FileType>
               <FilePath>..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_rtc_ex.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32h7xx_hal_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7xx_hal_adc_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_adc_ex.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -555,14 +565,29 @@
               <FilePath>..\src\keil\drivers\uart.c</FilePath>
             </File>
             <File>
-              <FileName>i2c_utils.c</FileName>
+              <FileName>bus_i2c_utils.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\src\keil\drivers\i2c_utils.c</FilePath>
+              <FilePath>..\src\keil\drivers\bus_i2c_utils.c</FilePath>
             </File>
             <File>
-              <FileName>i2c_timing.c</FileName>
+              <FileName>bus_i2c_timing.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\src\keil\drivers\i2c_timing.c</FilePath>
+              <FilePath>..\src\keil\drivers\bus_i2c_timing.c</FilePath>
+            </File>
+            <File>
+              <FileName>adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>dma_common.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\dma_common.c</FilePath>
+            </File>
+            <File>
+              <FileName>bus_i2c_config.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\bus_i2c_config.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -595,9 +620,9 @@
               <FilePath>..\src\keil\drivers\mcu\uart_hal.c</FilePath>
             </File>
             <File>
-              <FileName>i2c_hal.c</FileName>
+              <FileName>bus_i2c_hal.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\src\keil\drivers\mcu\i2c_hal.c</FilePath>
+              <FilePath>..\src\keil\drivers\mcu\bus_i2c_hal.c</FilePath>
             </File>
             <File>
               <FileName>persistent.c</FileName>
@@ -608,6 +633,26 @@
               <FileName>rtc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\keil\drivers\mcu\rtc.c</FilePath>
+            </File>
+            <File>
+              <FileName>adc_hal.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\mcu\adc_hal.c</FilePath>
+            </File>
+            <File>
+              <FileName>dma_reqmap_mcu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\mcu\dma_reqmap_mcu.c</FilePath>
+            </File>
+            <File>
+              <FileName>dma_hal.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\mcu\dma_hal.c</FilePath>
+            </File>
+            <File>
+              <FileName>bus_i2c_hal_init.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\mcu\bus_i2c_hal_init.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -623,6 +668,16 @@
               <FileName>eeprom_at24c02.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\keil\drivers\eeprom\eeprom_at24c02.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>main/sensors</GroupName>
+          <Files>
+            <File>
+              <FileName>adcinternal.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\sensors\adcinternal.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1101,6 +1156,16 @@
               <FileType>1</FileType>
               <FilePath>..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_rtc_ex.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32h7xx_hal_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7xx_hal_adc_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\main\STM32H7\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_adc_ex.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1177,14 +1242,29 @@
               <FilePath>..\src\keil\drivers\uart.c</FilePath>
             </File>
             <File>
-              <FileName>i2c_utils.c</FileName>
+              <FileName>bus_i2c_utils.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\src\keil\drivers\i2c_utils.c</FilePath>
+              <FilePath>..\src\keil\drivers\bus_i2c_utils.c</FilePath>
             </File>
             <File>
-              <FileName>i2c_timing.c</FileName>
+              <FileName>bus_i2c_timing.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\src\keil\drivers\i2c_timing.c</FilePath>
+              <FilePath>..\src\keil\drivers\bus_i2c_timing.c</FilePath>
+            </File>
+            <File>
+              <FileName>adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>dma_common.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\dma_common.c</FilePath>
+            </File>
+            <File>
+              <FileName>bus_i2c_config.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\bus_i2c_config.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1217,9 +1297,9 @@
               <FilePath>..\src\keil\drivers\mcu\uart_hal.c</FilePath>
             </File>
             <File>
-              <FileName>i2c_hal.c</FileName>
+              <FileName>bus_i2c_hal.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\src\keil\drivers\mcu\i2c_hal.c</FilePath>
+              <FilePath>..\src\keil\drivers\mcu\bus_i2c_hal.c</FilePath>
             </File>
             <File>
               <FileName>persistent.c</FileName>
@@ -1230,6 +1310,26 @@
               <FileName>rtc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\keil\drivers\mcu\rtc.c</FilePath>
+            </File>
+            <File>
+              <FileName>adc_hal.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\mcu\adc_hal.c</FilePath>
+            </File>
+            <File>
+              <FileName>dma_reqmap_mcu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\mcu\dma_reqmap_mcu.c</FilePath>
+            </File>
+            <File>
+              <FileName>dma_hal.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\mcu\dma_hal.c</FilePath>
+            </File>
+            <File>
+              <FileName>bus_i2c_hal_init.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\drivers\mcu\bus_i2c_hal_init.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1245,6 +1345,16 @@
               <FileName>eeprom_at24c02.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\keil\drivers\eeprom\eeprom_at24c02.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>main/sensors</GroupName>
+          <Files>
+            <File>
+              <FileName>adcinternal.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\keil\sensors\adcinternal.c</FilePath>
             </File>
           </Files>
         </Group>

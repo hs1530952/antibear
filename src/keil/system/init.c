@@ -8,7 +8,7 @@
 
 #include "drivers/adc.h"
 #include "drivers/io.h"
-#include "drivers/i2c.h"
+#include "drivers/bus_i2c.h"
 #include "drivers/system.h"
 #include "drivers/eeprom/eeprom_impl.h"
 #include "drivers/eeprom/eeprom.h"
@@ -32,7 +32,12 @@ void init(void)
     // and any init code that may try to modify task behaviour before tasksInit().
     tasksInitData();
 
-    i2cInit();
+    i2cHardwareConfigure();
+
+    for (int i2cindex = 0; i2cindex < I2CDEV_COUNT; i2cindex++) {
+        i2cInit(i2cindex);
+    }
+
     adcInit();
     adcInternalInit();
 

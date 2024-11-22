@@ -5,7 +5,7 @@
 #include "drivers/io.h"
 #include "drivers/time.h"
 
-#include "drivers/i2c_utils.h"
+#include "bus_i2c_utils.h"
 
 // Clock period in us during unstick transfer
 #define UNSTICK_CLK_US 10  // 100Khz

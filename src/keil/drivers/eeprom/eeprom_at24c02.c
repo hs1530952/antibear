@@ -4,7 +4,7 @@
 
 #include "platform.h"
 
-#include "drivers/i2c.h"
+#include "drivers/bus_i2c.h"
 #include "drivers/time.h"
 
 #include "drivers/eeprom/eeprom_impl.h"
