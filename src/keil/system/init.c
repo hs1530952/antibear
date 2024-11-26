@@ -8,10 +8,11 @@
 
 #include "drivers/adc.h"
 #include "drivers/io.h"
+#include "drivers/bus.h"
 #include "drivers/bus_i2c.h"
 #include "drivers/system.h"
-#include "drivers/eeprom/eeprom_impl.h"
 #include "drivers/eeprom/eeprom.h"
+#include "drivers/eeprom/eeprom_impl.h"
 
 #include "system/tasks.h"
 
@@ -33,15 +34,13 @@ void init(void)
     tasksInitData();
 
     i2cHardwareConfigure();
-
     for (int i2cindex = 0; i2cindex < I2CDEV_COUNT; i2cindex++) {
         i2cInit(i2cindex);
     }
+    eepromInit();
 
     adcInit();
     adcInternalInit();
-
-    eepromInit();
 
     tasksInit();
 

@@ -6,46 +6,94 @@
 
 #include "drivers/time.h"
 #include "drivers/io.h"
+#include "drivers/bus.h"
 #include "drivers/bus_i2c.h"
+#include "drivers/bus_i2c_busdev.h"
 
-#include "drivers/eeprom/eeprom_impl.h"
 #include "drivers/eeprom/eeprom.h"
+#include "drivers/eeprom/eeprom_impl.h"
 #include "drivers/eeprom/eeprom_at24c02.h"
 
-static eepromDevice_t eepromDevice[EEPROM_ID_COUNT];
+typedef struct eepromConfig_s {
+    uint8_t i2c_device;
+    uint8_t i2c_address;
+    uint8_t eeprom_hardware;
+} eepromConfig_t;
 
-bool eepromIsReady(eepromId_e id)
+const eepromConfig_t eepromConfig = {
+    .i2c_device = I2C_DEV_TO_CFG(I2CDEV_1),
+    .i2c_address = 0x50,
+    .eeprom_hardware = EEPROM_AT24C02,
+};
+
+static extDevice_t devInstance;
+
+static eepromDevice_t eepromDevice; 
+
+bool eepromIsReady(void)
 {
-    return eepromDevice[id].vTable->isReady();
+    return eepromDevice.vTable->isReady(&eepromDevice);
 }
 
-bool eepromWaitForReady(eepromId_e id)
+bool eepromWaitForReady(void)
 {
-    return eepromDevice[id].vTable->waitForReady();
+    return eepromDevice.vTable->waitForReady(&eepromDevice);
 }
 
-void eepromProgram(eepromId_e id, uint32_t address, const uint8_t *buffer, uint16_t length)
+void eepromProgram(uint32_t address, const uint8_t *buffer, uint16_t length)
 {
-    eepromDevice[id].vTable->program(address, buffer, length);
+    eepromDevice.vTable->program(&eepromDevice, address, buffer, length);
 }
 
-int eepromReadBytes(eepromId_e id, uint32_t address, uint8_t *buffer, uint16_t length)
+int eepromReadBytes(uint32_t address, uint8_t *buffer, uint16_t length)
 {
-    return eepromDevice[id].vTable->readBytes(address, buffer, length);
+    return eepromDevice.vTable->readBytes(&eepromDevice, address, buffer, length);
 }
 
-const eepromGeometry_t *eepromGetGeometry(eepromId_e id)
+const eepromGeometry_t *eepromGetGeometry(void)
 {
-    return eepromDevice[id].vTable->getGeometry(&eepromDevice[id]);
+    return eepromDevice.vTable->getGeometry(&eepromDevice);
 }
 
-void eepromInit(void)
+static bool eepromDetect(void)
 {
-    for (uint8_t index = 0; index < EEPROM_ID_COUNT; index++) {
-        switch (index) {
-            case EEPROM_ID_AT24C02: {
-                at24c02_init(&eepromDevice[index]);
-            } break;
-        }
+    extDevice_t *dev = &devInstance;
+
+    eeprom_e eepromHardware = eepromConfig.eeprom_hardware;
+
+    if (!i2cBusSetInstance(dev, eepromConfig.i2c_device)) {
+        return false;
     }
+    dev->busType_u.i2c.address = eepromConfig.i2c_address;
+
+    bool isI2CValid = false;
+    for (uint8_t try = 0; try < 3 && !isI2CValid; try++) {
+        uint8_t data;
+        isI2CValid = i2cBusReadRegisterBufferStart(dev, 0x00, &data, 1);
+    }
+
+    if (!isI2CValid) {
+        return false;
+    }
+
+    busDeviceRegister(dev);
+    eepromDevice.dev = dev;
+
+    switch (eepromHardware) {
+        case EEPROM_AT24C02: {
+            at24c02_init(&eepromDevice);
+        } break;
+        
+        default:
+            return false;
+    }
+
+    return true;
+}
+
+bool eepromInit(void)
+{
+    bool haveEeprom = eepromDetect();
+
+    return haveEeprom;
 }

@@ -4,11 +4,13 @@
 
 #include "platform.h"
 
+#include "drivers/bus.h"
 #include "drivers/bus_i2c.h"
+#include "drivers/bus_i2c_busdev.h"
 #include "drivers/time.h"
 
-#include "drivers/eeprom/eeprom_impl.h"
 #include "drivers/eeprom/eeprom.h"
+#include "drivers/eeprom/eeprom_impl.h"
 #include "drivers/eeprom/eeprom_at24c02.h"
 
 #define AT24C02_I2C_ADDRESS         0x50
@@ -20,9 +22,9 @@
 #define AT24C02_PAGE_BYTE_SIZE      8
 #define AT24C02_MAX_BYTES           (AT24C02_PAGE_SIZE * AT24C02_PAGE_BYTE_SIZE)
 
-static bool at24c02_isReady(void)
+static bool at24c02_isReady(eepromDevice_t *edevice)
 {
-    return !i2cBusy(I2CDEV_1, NULL);
+    return !busBusy(edevice->dev, NULL);
 }
 
 static bool at24c02_hasTimeOut(void)
@@ -34,10 +36,10 @@ static bool at24c02_hasTimeOut(void)
     return false;
 }
 
-static bool at24c02_waitForReady(void)
+static bool at24c02_waitForReady(eepromDevice_t *edevice)
 {
     bool ready = true;
-    while (!at24c02_isReady()) {
+    while (!at24c02_isReady(edevice)) {
         if (at24c02_hasTimeOut()) {
             ready = false;
             break;
@@ -47,7 +49,7 @@ static bool at24c02_waitForReady(void)
     return ready;
 }
 
-static void at24c02_program(uint32_t address, const uint8_t *data, uint16_t length)
+static void at24c02_program(eepromDevice_t *edevice, uint32_t address, const uint8_t *data, uint16_t length)
 {
     uint8_t currentPage;
     uint8_t currentPageIndex;
@@ -65,7 +67,7 @@ static void at24c02_program(uint32_t address, const uint8_t *data, uint16_t leng
 
     offset = 0;
 
-    i2cWriteBuffer(I2CDEV_1, AT24C02_I2C_ADDRESS, (currentPage * AT24C02_PAGE_BYTE_SIZE + currentPageIndex), pageDataCount, (uint8_t *)&data[offset]);
+    busWriteBufferStart(edevice->dev, (currentPage * AT24C02_PAGE_BYTE_SIZE + currentPageIndex), (uint8_t *)&data[offset], pageDataCount);
     delay(AT24C02_WRITE_DELAY_MAX_MS);
     offset += pageDataCount;
     length -= pageDataCount;
@@ -77,7 +79,7 @@ static void at24c02_program(uint32_t address, const uint8_t *data, uint16_t leng
             pageDataCount = AT24C02_PAGE_BYTE_SIZE;
         }
 
-        i2cWriteBuffer(I2CDEV_1, AT24C02_I2C_ADDRESS, (currentPage * AT24C02_PAGE_BYTE_SIZE + currentPageIndex), pageDataCount, (uint8_t *)&data[offset]);
+        busWriteBufferStart(edevice->dev, (currentPage * AT24C02_PAGE_BYTE_SIZE + currentPageIndex), (uint8_t *)&data[offset], pageDataCount);
         delay(AT24C02_WRITE_DELAY_MAX_MS);
         offset += pageDataCount;
         length -= pageDataCount;
@@ -85,9 +87,9 @@ static void at24c02_program(uint32_t address, const uint8_t *data, uint16_t leng
     }
 }
 
-static int at24c02_readBytes(uint32_t address, uint8_t *buffer, uint16_t length)
+static int at24c02_readBytes(eepromDevice_t *edevice, uint32_t address, uint8_t *buffer, uint16_t length)
 {
-    i2cReadBuffer(I2CDEV_1, AT24C02_I2C_ADDRESS, address, length, buffer);
+    busReadRegisterBufferStart(edevice->dev, address, buffer, length);
 
     return length < AT24C02_MAX_BYTES ? length : AT24C02_MAX_BYTES;
 }
